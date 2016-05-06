@@ -73,14 +73,13 @@ def plot_cross(images, l):
 
 def png_convert(images):
 	new = Image.new('RGBA', (260, 260))
-
 	for i, image in enumerate(images):
 		for x, line in enumerate(image):
 			for y, value in enumerate(line):
 				new.putpixel((x, y), ((convert(value)), (convert(value)), (convert(value)), (convert(value))))
 				w, h = new.size
 				new_image = new.crop((crop_x, crop_y, crop_x + size, crop_y + size))
-				resized = new_image.resize((50, 50), Image.ANTIALIAS)
+				# resized = new_image.resize((50, 50), Image.ANTIALIAS)
 
 	
 		directory = "data/voxels/png/mk-"+str(x_val)+"-"+str(y_val)+"/crop/"+str(size) + str(crop_x) + str(crop_y)
@@ -89,7 +88,8 @@ def png_convert(images):
 
 		filename = "mk"+str(i)+".png"
 		print directory, filename
-		resized.save(directory + "/" + filename)
+		new_image.save(directory + "/" + filename)
+		print "Saved!"
 
 # creates 260 images
 # for i in range(0, 259):
