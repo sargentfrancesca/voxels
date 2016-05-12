@@ -77,8 +77,8 @@ def png_convert(images):
 		for x, line in enumerate(image):
 			for y, value in enumerate(line):
 				new.putpixel((x, y), ((convert(value)), (convert(value)), (convert(value)), (convert(value))))
-				w, h = new.size
-				new_image = new.crop((crop_x, crop_y, crop_x + size, crop_y + size))
+				# w, h = new.size
+				# new_image = new.crop((crop_x, crop_y, crop_x + size, crop_y + size))
 				# resized = new_image.resize((50, 50), Image.ANTIALIAS)
 
 	
@@ -88,7 +88,7 @@ def png_convert(images):
 
 		filename = "mk"+str(i)+".png"
 		print directory, filename
-		new_image.save(directory + "/" + filename)
+		new.save(directory + "/" + filename)
 		print "Saved!"
 
 # creates 260 images
