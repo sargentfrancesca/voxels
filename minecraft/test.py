@@ -10,7 +10,7 @@ from mcpi.block import *
 mc = minecraft.Minecraft.create()
 
 def bulldoze():
-	size=366.6
+	size=255
 	height=255 
 	print("bulldozing")
 	mc.setBlocks(-size/2,0,-size/2,size/2,height,size/2,AIR)
