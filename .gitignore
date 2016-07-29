@@ -2,3 +2,8 @@ data/maps
 data/voxels/all_mk
 data/
 minecraft/tif
+
+data/
+data/voxels
+*.tif
+
