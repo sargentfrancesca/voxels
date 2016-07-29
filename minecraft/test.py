@@ -2,7 +2,7 @@ from PIL import Image
 import numpy, math, sys
 
 sys.path.append("/opt/minecraft-pi/api/python/")
-
+     
 from dbscode_minecraft import *
 from mcpi import minecraft
 from mcpi.block import *
@@ -10,11 +10,12 @@ from mcpi.block import *
 mc = minecraft.Minecraft.create()
 
 def bulldoze():
-	size=255
+	size=317.4
 	height=255 
 	print("bulldozing")
 	mc.setBlocks(-size/2,0,-size/2,size/2,height,size/2,AIR)
 	# mc.setBlock(-size/2, -1, -size/2, size, 1, size, GRASS)
+	# change this
 	box(GRASS,point(-size/2,-1,-size/2),point(size,1,size))
 	print("finished bulldozing")
 	
@@ -23,9 +24,9 @@ bulldoze()
 # Size, always square
 size = 260
 # X value of source tile
-x_val = 7
+x_val = 21
 # Y value of source tile
-y_val = 25
+y_val = 21  
 # Max Z value of source tile
 z_val = 70
 # X value to start crop
@@ -60,9 +61,9 @@ def normalise(array):
 	return data
 	
 # converting TIFF into arrays that we can work with
-def process_image(x, y, z):
+def process_image(x, y, z):  
 	# Open image, convert to numpy array
-	img = Image.open('tif/vox390.MK.'+str(x)+'.'+str(y)+'.'+str(z)+'.tif')
+	img = Image.open('tif/LT_21.21/vox390.LT.'+str(x)+'.'+str(y)+'.'+str(z)+'.tif')
 	numpy_array = numpy.array(img)
 	# image_array contains 260 arrays of values!
 	image_array = normalise(numpy_array)
@@ -73,7 +74,7 @@ def process_image(x, y, z):
 images = [process_image(x_val, y_val, x) for x in range(0,z_val + 1)]
 def material(value, x, y, i):
 	if value > 0.2:
-		mc.setBlocks(x-127,i,y-127,((x+1) - 127),i+1,((y+1) - 127), WOOL.id, convert(value))
+		mc.setBlocks(x-127,i,y-127,((x+1) - 127),i+1,((y+1) - 127), WOOL.id, 3)
 	
 def png_convert(images):
 	for i, image in enumerate(images):
