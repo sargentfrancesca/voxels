@@ -10,7 +10,7 @@ from mcpi.block import *
 mc = minecraft.Minecraft.create()
 
 def bulldoze():
-	size=255
+	size=360
 	height=255 
 	print("bulldozing")
 	mc.setBlocks(-size/2,0,-size/2,size/2,height,size/2,AIR)
@@ -28,7 +28,7 @@ x_val = 21
 # Y value of source tile
 y_val = 21  
 # Max Z value of source tile
-z_val = 70
+z_val = 0
 # X value to start crop
 crop_x = 0
 # Y value to start crop
@@ -64,9 +64,16 @@ def normalise(array):
 def process_image(x, y, z):  
 	# Open image, convert to numpy array
 	img = Image.open('tif/LT_21.21/vox390.LT.'+str(x)+'.'+str(y)+'.'+str(z)+'.tif')
+	# img = Image.open('20200.tif')
 	numpy_array = numpy.array(img)
+		
 	# image_array contains 260 arrays of values!
 	image_array = normalise(numpy_array)
+	
+	import itertools
+	file = open("original.txt", 'w')
+	file.write(str(image_array))
+	file.close()
 
 	return image_array
 
