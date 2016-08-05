@@ -24,13 +24,13 @@ bulldoze()
 # Size, always square
 size = 260
 # X value of source tile
-x_val = 21
+x_val = 10
 # Y value of source tile
-y_val = 21  
+y_val = 25
 # Max Z value of source tile
-z_val = 0
+z_val = 70
 # X value to start crop
-crop_x = 0
+crop_x = 0  
 # Y value to start crop
 crop_y = 0
 
@@ -63,17 +63,10 @@ def normalise(array):
 # converting TIFF into arrays that we can work with
 def process_image(x, y, z):  
 	# Open image, convert to numpy array
-	img = Image.open('tif/LT_21.21/vox390.LT.'+str(x)+'.'+str(y)+'.'+str(z)+'.tif')
-	# img = Image.open('20200.tif')
+	img = Image.open('tif/vox390.MK.'+str(x)+'.'+str(y)+'.'+str(z)+'.tif')
 	numpy_array = numpy.array(img)
-		
 	# image_array contains 260 arrays of values!
 	image_array = normalise(numpy_array)
-	
-	import itertools
-	file = open("original.txt", 'w')
-	file.write(str(image_array))
-	file.close()
 
 	return image_array
 
@@ -81,7 +74,7 @@ def process_image(x, y, z):
 images = [process_image(x_val, y_val, x) for x in range(0,z_val + 1)]
 def material(value, x, y, i):
 	if value > 0.2:
-		mc.setBlocks(x-127,i,y-127,((x+1) - 127),i+1,((y+1) - 127), WOOL.id, 3)
+		mc.setBlocks(127 - x,i,y-127,127 - x,i,y-127, WOOL.id, 3)
 	
 def png_convert(images):
 	for i, image in enumerate(images):
